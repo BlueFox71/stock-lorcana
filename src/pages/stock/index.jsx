@@ -22,7 +22,6 @@ const Container = styled.div`
     width: 70%;
     margin: 0 auto;
     padding: 50px;
-
     @media screen and (max-width: 415px) {
       width: 340px;
     }
