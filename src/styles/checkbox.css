@@ -1,0 +1,41 @@
+@import url("./colors.css");
+
+.checkbox-color .image-checkbox .ant-checkbox {
+  display: none;
+}
+
+.checkbox-color .ant-checkbox-wrapper {
+  filter: grayscale(70%);
+  width: 50px;
+}
+
+.checkbox-color .ant-checkbox-wrapper-checked {
+  filter: drop-shadow(1px 1px 5px var(--saphir));
+}
+
+label.ant-checkbox-wrapper:not(.image-checkbox) {
+  background-color: black;
+  padding: 3px;
+  border-radius: 5px;
+  border: 3px solid var(--ambre);
+  color: white;
+  margin: 5px;
+  text-align: center;
+}
+@media screen and (max-width: 415px) {
+  label.ant-checkbox-wrapper:not(.image-checkbox) {
+    min-width: 200px;
+  }
+}
+
+label.ant-checkbox-wrapper.ant-checkbox-wrapper-checked {
+  color: var(--saphir);
+}
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: var(
+    --saphir
+  ); /* Changer la couleur de fond de la case cochée */
+  border-color: var(
+    --saphir
+  ); /* Changer la couleur de bordure de la case cochée */
+}
