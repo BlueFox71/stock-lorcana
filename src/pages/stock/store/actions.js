@@ -1,6 +1,9 @@
 import { fetchWrapper } from "../../../reducers/fetchWrapper";
+import { getEnv } from "../../../utils/config";
 import {} from "./actions";
 import { FETCH_CARDS, FETCH_CARDS_MORE } from "./constants";
+
+const env = getEnv();
 
 export const fetchCards = (filters) => async (dispatch) => {
   const query = Object.fromEntries(
@@ -13,7 +16,7 @@ export const fetchCards = (filters) => async (dispatch) => {
   );
   const queryParams = new URLSearchParams(query).toString();
   return await dispatch(
-    fetchWrapper(`http://localhost:5000/api/cards?${queryParams}`, FETCH_CARDS)
+    fetchWrapper(`${env}/api/cards?${queryParams}`, FETCH_CARDS)
   );
 };
 
@@ -28,6 +31,6 @@ export const fetchCardsMore = (filters) => async (dispatch) => {
   );
   const queryParams = new URLSearchParams(query).toString();
   return await dispatch(
-    fetchWrapper(`http://localhost:5000/api/cards?${queryParams}`, FETCH_CARDS_MORE)
+    fetchWrapper(`${env}/api/cards?${queryParams}`, FETCH_CARDS_MORE)
   );
 };
