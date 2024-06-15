@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/stock-lorcana/static/css/main.d2c06acc.css",
-    "main.js": "/stock-lorcana/static/js/main.fcd7a457.js",
+    "main.js": "/stock-lorcana/static/js/main.babbf6eb.js",
     "static/media/chapter_2_047.png": "/stock-lorcana/static/media/chapter_2_047.8a436374bd1162c00bdf.png",
     "static/media/chapter_4_050.png": "/stock-lorcana/static/media/chapter_4_050.493ff5b850753d6fb3d0.png",
     "static/media/chapter_4_207.png": "/stock-lorcana/static/media/chapter_4_207.b332ac76074bfe0d9b1e.png",
@@ -917,10 +917,10 @@
     "static/media/unusual.webp": "/stock-lorcana/static/media/unusual.1ec80b533c4330464d6a.webp",
     "index.html": "/stock-lorcana/index.html",
     "main.d2c06acc.css.map": "/stock-lorcana/static/css/main.d2c06acc.css.map",
-    "main.fcd7a457.js.map": "/stock-lorcana/static/js/main.fcd7a457.js.map"
+    "main.babbf6eb.js.map": "/stock-lorcana/static/js/main.babbf6eb.js.map"
   },
   "entrypoints": [
     "static/css/main.d2c06acc.css",
-    "static/js/main.fcd7a457.js"
+    "static/js/main.babbf6eb.js"
   ]
 }
