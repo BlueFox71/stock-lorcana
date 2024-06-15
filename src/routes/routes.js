@@ -11,7 +11,7 @@ const NotFound = () => {
 
 const Routers = () => {
   return (
-    <Router>
+    <Router basename="/stock-lorcana">
       <Routes>
         <Route index element={<Home />} />
         <Route path="stock" element={<Stock />} />
