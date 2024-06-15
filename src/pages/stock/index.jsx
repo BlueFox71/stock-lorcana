@@ -42,6 +42,7 @@ const Stock = () => {
 
   const handleFetchMore = async () => {
     const { limit, offset } = filters;
+    console.log("next", limit, offset)
     await dispatch(
       fetchCardsMore({ ...filters, limit, offset: offset + limit })
     );
