@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Row, Col, Skeleton, FloatButton } from "antd";
+import { Row, Col, FloatButton } from "antd";
 import Card from "./components/Card";
 import styled from "styled-components";
 import ButtonBack from "../../_components/ButtonBack";
@@ -9,6 +9,8 @@ import { fetchCards, fetchCardsMore } from "./store/actions";
 import { loadingSelector } from "../../reducers/fetchWrapper";
 import { FETCH_CARDS, SET_FILTERS } from "./store/constants";
 import InfiniteScroll from "react-infinite-scroll-component";
+import Loader from "../../shared/Loader";
+import NoData from "../../shared/NoData";
 
 const selector = (state) => ({
   cards: state.cards.items,
@@ -21,7 +23,7 @@ const Container = styled.div`
   && {
     width: 70%;
     margin: 0 auto;
-    padding: 50px;
+    padding: 50px 0;
     @media screen and (max-width: 415px) {
       width: 340px;
     }
@@ -41,8 +43,8 @@ const Stock = () => {
   }, [dispatch]);
 
   const handleFetchMore = async () => {
+    console.log("ici")
     const { limit, offset } = filters;
-    console.log("next", limit, offset)
     await dispatch(
       fetchCardsMore({ ...filters, limit, offset: offset + limit })
     );
@@ -70,13 +72,14 @@ const Stock = () => {
       </Col>
     ));
 
-  return (
+    return (
     <>
-      <h1>Inventaire Lorcana</h1>
+      <Loader isLoading={isFetching} />
+      <h1 style={{ marginTop: "80px" }}>Inventaire Lorcana</h1>
       <Container>
         <Filters cards={cards} total={countTotal} />
-        <Skeleton active loading={isFetching}>
-          <Row gutter={[0, 10]} textAlign={"center"}>
+        {cards?.length > 0 ? (
+          <Row gutter={[0, 10]}>
             {countTotal > 17 ? (
               <InfiniteScroll
                 dataLength={cards.length} //This is important field to render the next data
@@ -94,8 +97,10 @@ const Stock = () => {
               renderCards()
             )}
           </Row>
-          <ButtonBack />
-        </Skeleton>
+        ) : (
+          <>{!isFetching && <NoData />}</>
+        )}
+        <ButtonBack />
       </Container>
       <FloatButton.BackTop style={{ bottom: 100 }} />
     </>

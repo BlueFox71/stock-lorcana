@@ -5,6 +5,7 @@ import "./styles/checkbox.css";
 import "./styles/fonts.css";
 import "./styles/text.css";
 import "./styles/colors.css";
+import "./styles/loader.css";
 import Routers from "./routes/routes";
 import { ConfigProvider } from "antd";
 import { theme } from "./styles/theme";

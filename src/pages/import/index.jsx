@@ -6,7 +6,10 @@ import { hexaColorsInk } from "../../utils/colors";
 import { Button, Row } from "antd";
 import { Link } from "react-router-dom";
 import { importCards } from "../stock/store/actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { loadingSelector } from "../../reducers/fetchWrapper";
+import { IMPORT_CARDS } from "../stock/store/constants";
+import Loader from "../../shared/Loader";
 
 const Input = styled.input`
   width: 50%;
@@ -16,10 +19,15 @@ const Input = styled.input`
   color: white;
 `;
 
+const selector = (state) => ({
+  loading: loadingSelector([IMPORT_CARDS])(state),
+});
+
 const Import = () => {
   const [successful, setSuccessful] = useState(false);
   const [chaptersState, setChapters] = useState(null);
   const dispatch = useDispatch();
+  const { loading } = useSelector(selector);
 
   const getDataChapter = async (workbook, sheetname) => {
     const worksheet = workbook.Sheets[sheetname];
@@ -63,15 +71,16 @@ const Import = () => {
   };
 
   const handleImport = async () => {
-    [1,2,3,4].forEach(async (index) => {
+    [1, 2, 3, 4].forEach(async (index) => {
       await dispatch(importCards(chaptersState[index], index)).then(() => {
         setSuccessful(true);
       });
-    })
+    });
   };
 
   return (
     <>
+      <Loader isLoading={loading} />
       <h1>Importer des cartes</h1>
       <Row
         align={"middle"}
@@ -93,13 +102,13 @@ const Import = () => {
         ) : (
           <Input type="file" accept=".xlsx, .xls" onChange={handleFileUpload} />
         )}
-        {chaptersState && (
+        {chaptersState && !successful && (
           <Button
             type="primary"
             style={{
               marginTop: "60px",
               height: "auto",
-              width: "300px",
+              width: "500px",
               fontSize: "25px",
             }}
             onClick={handleImport}
@@ -112,7 +121,7 @@ const Import = () => {
             style={{
               marginTop: "30px",
               height: "auto",
-              width: "300px",
+              width: "500px",
               fontSize: "25px",
             }}
           >

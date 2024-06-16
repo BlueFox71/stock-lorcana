@@ -1,15 +1,18 @@
 import { Button, Form, Input, Modal, notification } from "antd";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { LOGIN, LOGOUT } from "../../pages/stock/store/constants";
 
-const selector = (state) => ({
-  authentication: state.authentication,
-});
-
 const AuthentificationModal = () => {
+  const auth_lorcana = localStorage.getItem("auth_lorcana");
+  const { authentication } = useSelector((state) => ({
+    authentication: state.authentication,
+  }));
+  const username = localStorage.getItem("username");
+
+  const [authenticate, setAuthenticate] = useState(true);
+
   const [api, contextHolder] = notification.useNotification();
-  const { authentication } = useSelector(selector);
   const [form] = Form.useForm();
   const dispatch = useDispatch();
 
@@ -21,6 +24,7 @@ const AuthentificationModal = () => {
     ) {
       dispatch({ type: LOGIN, payload: identifiant.toLowerCase() });
       form.resetFields();
+      setAuthenticate(true);
     } else {
       api.error({
         message: `Connexion erronée`,
@@ -32,17 +36,15 @@ const AuthentificationModal = () => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("auth_lorcana") === "true") {
-      dispatch({ type: LOGIN });
-    } else {
+    if (auth_lorcana !== "true") {
       dispatch({ type: LOGOUT });
+      setAuthenticate(false);
     }
-  }, [dispatch]);
+  }, [dispatch, auth_lorcana, authentication]);
 
   return (
     <>
       {contextHolder}
-
       <Modal
         form={form}
         title={
@@ -50,7 +52,10 @@ const AuthentificationModal = () => {
             Authentification
           </p>
         }
-        open={authentication === false}
+        open={
+          !authenticate &&
+          (auth_lorcana === "false" || !["jules", "alexis"].includes(username))
+        }
         centered
         closable={false}
         footer={null}

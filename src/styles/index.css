@@ -18,10 +18,3 @@ body {
   width: 100%;
   z-index: 1;
 }
-
-.button-lorcan {
-  && {
-    background: red !important;
-    color: yellow;
-  }
-}

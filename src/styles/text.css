@@ -26,3 +26,13 @@ h1 em {
   font-style: normal;
   font-weight: 600;
 }
+
+.text-beige {
+  color: var(--beige-lorcana);
+}
+
+@media screen and (max-width: 415px) {
+  h1 {
+    font-size: 60px;
+  }
+}

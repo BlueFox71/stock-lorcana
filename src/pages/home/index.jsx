@@ -9,7 +9,7 @@ const Container = styled.div`
   && {
     width: 80%;
     margin: 0 auto;
-    padding: 50px;
+    padding: 50px 0;
   }
 `;
 
@@ -29,7 +29,13 @@ const ButtonMenu = styled(Button)`
   height: 70px;
   width: 600px;
   font-size: 20px;
-  margin: 10px;
+  margin: 10px 0;
+
+  @media screen and (max-width: 415px) {
+    width: 300px;
+  }
+}
+
 `;
 
 const selector = (state) => ({
@@ -45,9 +51,9 @@ const Home = () => {
   const { authentication } = useSelector(selector);
 
   useEffect(() => {
-     setUsername(localStorage.getItem("username"))
-
+    setUsername(localStorage.getItem("username"));
   }, [authentication]);
+
   return (
     <Container>
       <h1>Stock Lorcana de Jules et Alexis</h1>
@@ -56,7 +62,7 @@ const Home = () => {
           <Link to="/stock">
             <ButtonMenu type="primary">Inventaire</ButtonMenu>
           </Link>
-          {username === "jules" && (
+          {username === "jules" && window.innerWidth > 700 && (
             <Link to="/import">
               <ButtonMenu>Importer les cartes</ButtonMenu>
             </Link>

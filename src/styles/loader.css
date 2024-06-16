@@ -1,0 +1,113 @@
+@import url("./colors.css");
+
+.loader body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loader {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  left: -40px;
+  display: block;
+  margin: auto;
+  position: relative;
+  background: #fff;
+  box-shadow: -192px 0 #fff, -96px 0 #fff, 96px 0 #fff, 192px 0 #fff,
+    288px 0 #fff;
+  box-sizing: border-box;
+  animation: shadowPulse 2s ease-out infinite;
+}
+
+@media screen and (max-width: 415px) {
+  .loader {
+    width: 32px;
+    height: 32px;
+    box-shadow: -96px 0 #fff, -48px 0 #fff, 48px 0 #fff, 96px 0 #fff,
+      144px 0 #fff;
+    left: -20px;
+    animation: littleShadowPulse 2s ease-out infinite;
+  }
+}
+
+@keyframes shadowPulse {
+  16.67% {
+    background: #fff;
+    box-shadow: -192px 0 var(--ambre), -96px 0 #fff, 96px 0 #fff, 192px 0 #fff,
+      288px 0 #fff;
+  }
+  33.33% {
+    background: #fff;
+    box-shadow: -192px 0 #fff, -96px 0 var(--amethyste), 96px 0 #fff,
+      192px 0 #fff, 288px 0 #fff;
+  }
+  50% {
+    background: var(--emeraude);
+    box-shadow: -192px 0 #fff, -96px 0 #fff, 96px 0 #fff, 192px 0 #fff,
+      288px 0 #fff;
+  }
+  66.67% {
+    background: #fff;
+    box-shadow: -192px 0 #fff, -96px 0 #fff, 96px 0 var(--rubis), 192px 0 #fff,
+      288px 0 #fff;
+  }
+  83.33% {
+    background: #fff;
+    box-shadow: -192px 0 #fff, -96px 0 #fff, 96px 0 #fff, 192px 0 var(--saphir),
+      288px 0 #fff;
+  }
+  100% {
+    background: #fff;
+    box-shadow: -192px 0 #fff, -96px 0 #fff, 96px 0 #fff, 192px 0 #fff,
+      288px 0 var(--acier);
+  }
+}
+
+@keyframes littleShadowPulse {
+  16.67% {
+    background: #fff;
+    box-shadow: -96px 0 var(--ambre), -48px 0 #fff, 48px 0 #fff, 96px 0 #fff,
+      144px 0 #fff;
+  }
+  33.33% {
+    background: #fff;
+    box-shadow: -96px 0 #fff, -48px 0 var(--amethyste), 48px 0 #fff, 96px 0 #fff,
+      144px 0 #fff;
+  }
+  50% {
+    background: var(--emeraude);
+    box-shadow: -96px 0 #fff, -48px 0 #fff, 48px 0 #fff, 96px 0 #fff,
+      144px 0 #fff;
+  }
+  66.67% {
+    background: #fff;
+    box-shadow: -96px 0 #fff, -48px 0 #fff, 48px 0 var(--rubis), 96px 0 #fff,
+      144px 0 #fff;
+  }
+  83.33% {
+    background: #fff;
+    box-shadow: -96px 0 #fff, -48px 0 #fff, 48px 0 #fff, 96px 0 var(--saphir),
+      144px 0 #fff;
+  }
+  100% {
+    background: #fff;
+    box-shadow: -96px 0 #fff, -48px 0 #fff, 48px 0 #fff, 96px 0 #fff,
+      144px 0 var(--acier);
+  }
+}
