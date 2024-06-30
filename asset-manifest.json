@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "https://bluefox71.github.io/stock-lorcana/static/css/main.671a6a2d.css",
-    "main.js": "https://bluefox71.github.io/stock-lorcana/static/js/main.0ae19798.js",
+    "main.css": "https://bluefox71.github.io/stock-lorcana/static/css/main.71aec963.css",
+    "main.js": "https://bluefox71.github.io/stock-lorcana/static/js/main.8e9a8025.js",
     "static/media/chapter_2_047.png": "https://bluefox71.github.io/stock-lorcana/static/media/chapter_2_047.8a436374bd1162c00bdf.png",
     "static/media/chapter_4_050.png": "https://bluefox71.github.io/stock-lorcana/static/media/chapter_4_050.493ff5b850753d6fb3d0.png",
     "static/media/chapter_4_207.png": "https://bluefox71.github.io/stock-lorcana/static/media/chapter_4_207.b332ac76074bfe0d9b1e.png",
@@ -918,11 +918,11 @@
     "static/media/common.webp": "https://bluefox71.github.io/stock-lorcana/static/media/common.937bf41bdfb09225b20c.webp",
     "static/media/unusual.webp": "https://bluefox71.github.io/stock-lorcana/static/media/unusual.1ec80b533c4330464d6a.webp",
     "index.html": "https://bluefox71.github.io/stock-lorcana/index.html",
-    "main.671a6a2d.css.map": "https://bluefox71.github.io/stock-lorcana/static/css/main.671a6a2d.css.map",
-    "main.0ae19798.js.map": "https://bluefox71.github.io/stock-lorcana/static/js/main.0ae19798.js.map"
+    "main.71aec963.css.map": "https://bluefox71.github.io/stock-lorcana/static/css/main.71aec963.css.map",
+    "main.8e9a8025.js.map": "https://bluefox71.github.io/stock-lorcana/static/js/main.8e9a8025.js.map"
   },
   "entrypoints": [
-    "static/css/main.671a6a2d.css",
-    "static/js/main.0ae19798.js"
+    "static/css/main.71aec963.css",
+    "static/js/main.8e9a8025.js"
   ]
 }
