@@ -16,6 +16,14 @@ export const hexaColorsInk = {
   ACIER: "#9FABB5",
 };
 
+export const rgbColorsInk = {
+  AMBRE: "rgb(232, 164, 59)",
+  AMETHYSTE: "rgb(127, 55, 120)",
+  EMEREAUDE: "rgb(40, 137, 46)",
+  RUBIS: "rgb(212, 9, 50)",
+  SAPHIR: "rgb(3, 139, 199)",
+  ACIER: "rgb(159, 171, 181)",
+};
 export const hexaDarkColorsInk = {
   AMBRE: "#22190C",
   AMETHYSTE: "#462A46",
@@ -45,6 +53,46 @@ export const getHexaColorByColorInk = (colorInk, isDark = false) => {
       return !isDark ? hexaColorsInk.SAPHIR : hexaDarkColorsInk.SAPHIR;
     case COLOR_INK.ACIER:
       return !isDark ? hexaColorsInk.ACIER : hexaDarkColorsInk.ACIER;
+    default:
+      break;
+  }
+};
+
+export const getLinkColorImage = (color) => {
+  switch (color) {
+    case COLOR_INK.AMBRE:
+      return "amber.webp";
+    case COLOR_INK.AMETHYSTE:
+      return "amethyst.webp";
+    case COLOR_INK.EMEREAUDE:
+      return "emerald.webp";
+    case COLOR_INK.RUBIS:
+      return "ruby.webp";
+    case COLOR_INK.ACIER:
+      return "steel.png";
+    case COLOR_INK.SAPHIR:
+      return "sapphire.webp";
+
+    default:
+      break;
+  }
+};
+
+export const getRgbColorByColorInk = (color) => {
+  switch (color) {
+    case COLOR_INK.AMBRE:
+      return rgbColorsInk.AMBRE;
+    case COLOR_INK.AMETHYSTE:
+      return rgbColorsInk.AMETHYSTE;
+    case COLOR_INK.EMEREAUDE:
+      return rgbColorsInk.EMEREAUDE;
+    case COLOR_INK.RUBIS:
+      return rgbColorsInk.RUBIS;
+    case COLOR_INK.ACIER:
+      return rgbColorsInk.ACIER;
+    case COLOR_INK.SAPHIR:
+      return rgbColorsInk.SAPHIR;
+
     default:
       break;
   }

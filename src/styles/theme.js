@@ -2,13 +2,12 @@ import { colors } from "../utils/colors";
 
 export const theme = {
   token: {
-    // Seed Token
-    colorPrimary: colors.primary,
     borderRadius: 5,
+    // Set primary
+    colorPrimary: colors.primary,
 
     // Alias Token
     colorBgContainer: "white",
-    colorPrimaryHover: colors.lightPrimary,
     colorPrimaryText: "black",
   },
 };

@@ -12,7 +12,6 @@ const AuthentificationModal = () => {
 
   const [authenticate, setAuthenticate] = useState(true);
 
-  const [api, contextHolder] = notification.useNotification();
   const [form] = Form.useForm();
   const dispatch = useDispatch();
 
@@ -26,10 +25,10 @@ const AuthentificationModal = () => {
       form.resetFields();
       setAuthenticate(true);
     } else {
-      api.error({
+      notification.error({
         message: `Connexion erronée`,
         description: "L'identifiant ou le mot de passe est incorrect",
-        placement: "topLeft",
+        placement: "topRight",
       });
       form.setFieldValue("password", null);
     }
@@ -44,7 +43,6 @@ const AuthentificationModal = () => {
 
   return (
     <>
-      {contextHolder}
       <Modal
         form={form}
         title={

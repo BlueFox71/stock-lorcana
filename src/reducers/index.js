@@ -1,6 +1,11 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import { cards, filtersCard } from "../pages/stock/store/reducer";
+import {
+  cards,
+  filtersCard,
+  remainingQuantities,
+} from "../pages/stock/store/reducer";
 import { authentication } from "./authentication";
+import { deck, decks } from "../pages/decks/store/reducer";
 
 const loadings = (state = { loadings: [] }, action) => {
   if (
@@ -31,7 +36,10 @@ const rootReducer = combineReducers({
   cards,
   filtersCard,
   loadings,
-  authentication
+  authentication,
+  decks,
+  deck,
+  remainingQuantities,
 });
 
 export default rootReducer;

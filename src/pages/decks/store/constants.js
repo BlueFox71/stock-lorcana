@@ -1,0 +1,9 @@
+export const FETCH_DECKS = "decks/FETCH_DECKS";
+export const FETCH_DECK = "decks/FETCH_DECK";
+export const ON_CREATE_DECK = "decks/ON_CREATE_DECK";
+export const ON_UPDATE_DECK = "decks/ON_UPDATE_DECK";
+export const ON_DUPLICATE_DECK = "decks/ON_DUPLICATE_DECK";
+
+export const FETCH_CARDS_FOR_DECKS = "cards/FETCH_CARDS_FOR_DECKS";
+export const FETCH_CARDS_FOR_DECKS_MORE = "cards/FETCH_CARDS_FOR_DECKS_MORE";
+export const FETCH_REMAINING_QUANTITIES = "cards/FETCH_REMAINING_QUANTITIES";

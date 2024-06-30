@@ -2,7 +2,6 @@ import { Button, Card, Checkbox, Col, Input, Row } from "antd";
 import React from "react";
 import styled from "styled-components";
 import CheckboxWithImage from "../CheckBoxWithImage";
-import PropTypes from "prop-types";
 import { SearchOutlined } from "@ant-design/icons";
 
 const Container = styled(Card)`
@@ -62,35 +61,35 @@ const chapterOptions = [
   { value: "4", label: "4 - Le retour d'Ursula" },
 ];
 const FiltersComponent = (props) => {
-  const { filters, countCards, isFetching } = props;
+  const { filters, countCards, isFetching, withoutColors } = props;
 
-  const handleChange = (name, value) => {
-    props.onChange(name, value);
-  };
+  const handleChange = (name, value) => props.onChange(name, value);
 
   return (
     <Container>
       <Row align={"center"}>
         <Row>
-          <Col lg={12}>
-            <CardStyled title={"Couleurs des encres"}>
-              <Checkbox.Group
-                className="checkbox-color"
-                value={filters.colors}
-                onChange={(value) => handleChange("colors", value)}
-              >
-                {colorsOptions.map((option) => (
-                  <CheckboxWithImage
-                    className="checkbox-color"
-                    key={option.value}
-                    value={option.value}
-                    imageSrc={option.src}
-                  />
-                ))}
-              </Checkbox.Group>
-            </CardStyled>
-          </Col>
-          <Col lg={12}>
+          {!withoutColors && (
+            <Col lg={12}>
+              <CardStyled title={"Couleurs des encres"}>
+                <Checkbox.Group
+                  className="checkbox-color"
+                  value={filters.colors}
+                  onChange={(value) => handleChange("colors", value)}
+                >
+                  {colorsOptions.map((option) => (
+                    <CheckboxWithImage
+                      className="checkbox-color"
+                      key={option.value}
+                      value={option.value}
+                      imageSrc={option.src}
+                    />
+                  ))}
+                </Checkbox.Group>
+              </CardStyled>
+            </Col>
+          )}
+          <Col lg={withoutColors ? 24 : 12}>
             <CardStyled title="Rareté">
               <Checkbox.Group
                 className="checkbox-color"
@@ -131,10 +130,20 @@ const FiltersComponent = (props) => {
           <Col lg={3}>
             <CardStyled title="Quantité">
               <Checkbox
+                key={"ownedCards"}
+                value={"ownedCards"}
+                checked={filters.ownedCards}
+                onChange={(e) => handleChange("ownedCards", e.target.checked)}
+                style={{ width: "150px" }}
+              >
+                Possédé
+              </Checkbox>
+              <Checkbox
                 key={"missingCard"}
                 value={"missingCard"}
                 checked={filters.missingCard}
                 onChange={(e) => handleChange("missingCard", e.target.checked)}
+                style={{ width: "150px" }}
               >
                 Non possédé
               </Checkbox>
@@ -168,23 +177,15 @@ const FiltersComponent = (props) => {
           </Col>
         </Row>
       </Row>
-      {!isFetching && (<Row align={"end"}>
-        <h2 style={{ margin: 0 }}>{` ${countCards} CARTE${
-          countCards > 1 ? "S" : ""
-        }`}</h2>
-      </Row>)}
+      {!isFetching && (
+        <Row align={"end"}>
+          <h2 style={{ margin: 0 }}>{` ${countCards} CARTE${
+            countCards > 1 ? "S" : ""
+          }`}</h2>
+        </Row>
+      )}
     </Container>
   );
-};
-
-FiltersComponent.propTypes = {
-  onChange: PropTypes.shape(),
-  filters: PropTypes.array,
-  onReset: PropTypes.func,
-  onClose: PropTypes.func,
-  onSearch: PropTypes.func,
-  countCards: PropTypes.number,
-  isFetching: PropTypes.bool
 };
 
 export default FiltersComponent;

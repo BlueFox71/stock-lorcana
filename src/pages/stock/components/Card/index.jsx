@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Col, Image, Row } from "antd";
 import { styled } from "styled-components";
 
@@ -8,6 +7,7 @@ const StyledImage = styled(Image)`
     width: 200px;
     box-shadow: 1px 1px 10px grey;
     border-radius: 12px;
+    user-select: none;
     background-color: black;
     @media screen and (max-width: 415px) {
       width: 100px;
@@ -25,6 +25,7 @@ const RowStyled = styled(Row)`
     width: 200px;
     margin: 20px auto;
     border-radius: 10px;
+    user-select: none;
     @media screen and (max-width: 415px) {
       width: 100px;
       padding: 0;
@@ -75,10 +76,6 @@ const Card = ({ item }) => {
       </RowStyled>
     </>
   );
-};
-
-Card.propTypes = {
-  item: PropTypes.shape(),
 };
 
 export default Card;

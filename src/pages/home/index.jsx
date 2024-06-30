@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { LOGOUT } from "../stock/store/constants";
+import { DECKS, IMPORT, STOCK } from "../../routes/routes";
 
 const Container = styled.div`
   && {
@@ -35,7 +36,14 @@ const ButtonMenu = styled(Button)`
     width: 300px;
   }
 }
+`;
 
+const TitleMenu = styled.h1`
+  && {
+    @media screen and (max-width: 415px) {
+      font-size: 50px;
+    }
+  }
 `;
 
 const selector = (state) => ({
@@ -44,26 +52,30 @@ const selector = (state) => ({
 
 const Home = () => {
   const dispatch = useDispatch();
-  const handleLogout = () => {
-    dispatch({ type: LOGOUT });
-  };
-  const [username, setUsername] = useState(null);
   const { authentication } = useSelector(selector);
+  const [username, setUsername] = useState(null);
 
   useEffect(() => {
     setUsername(localStorage.getItem("username"));
   }, [authentication]);
 
+  const handleLogout = () => {
+    dispatch({ type: LOGOUT });
+  };
+
   return (
     <Container>
-      <h1>Stock Lorcana de Jules et Alexis</h1>
+      <TitleMenu>Stock Lorcana de Jules et Alexis</TitleMenu>
       <MenuItems>
         <Buttons>
-          <Link to="/stock">
+          <Link to={STOCK}>
             <ButtonMenu type="primary">Inventaire</ButtonMenu>
           </Link>
+          <Link to={DECKS}>
+            <ButtonMenu type="primary">Decks</ButtonMenu>
+          </Link>
           {username === "jules" && window.innerWidth > 700 && (
-            <Link to="/import">
+            <Link to={IMPORT}>
               <ButtonMenu>Importer les cartes</ButtonMenu>
             </Link>
           )}

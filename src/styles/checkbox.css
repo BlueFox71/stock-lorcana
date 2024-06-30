@@ -15,9 +15,9 @@
 
 label.ant-checkbox-wrapper:not(.image-checkbox) {
   background-color: black;
-  padding: 3px;
+  padding: 10px;
   border-radius: 5px;
-  border: 3px solid var(--ambre);
+  border: thick double var(--ambre);
   color: white;
   margin: 5px;
   text-align: center;

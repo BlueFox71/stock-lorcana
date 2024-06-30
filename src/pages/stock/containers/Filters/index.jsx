@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import FiltersComponent from "../../components/Filters";
 import { FloatButton } from "antd";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,19 +6,20 @@ import { fetchCards } from "../../store/actions";
 import { FilterOutlined } from "@ant-design/icons";
 import { FETCH_CARDS, RESET_FILTERS, SET_FILTERS } from "../../store/constants";
 import { loadingSelector } from "../../../../reducers/fetchWrapper";
+import { CONTEXT } from "../../../../shared/CardsList";
 
 const selector = (state) => ({
   filters: state.filtersCard,
   isFetching: loadingSelector([FETCH_CARDS])(state),
 });
 
-const Filters = ({ total }) => {
+const Filters = ({ total, context }) => {
   const dispatch = useDispatch();
   const { filters, isFetching } = useSelector(selector);
   const [visible, setVisible] = useState(false);
 
   const handleFetchCards = async (filtersToApply = filters) => {
-    await dispatch(fetchCards(filtersToApply));
+    dispatch(fetchCards(filtersToApply));
   };
 
   const handleReset = async () => {
@@ -36,7 +36,11 @@ const Filters = ({ total }) => {
   const handleSearch = async (e) => {
     const { value } = e.target;
     throttleSearch(() => {
-      handleFetchCards({ ...filters, search: value });
+      handleFetchCards({
+        ...filters,
+        search: value,
+        offset: 0,
+      });
     });
   };
 
@@ -50,33 +54,35 @@ const Filters = ({ total }) => {
     await dispatch({ type: SET_FILTERS, payload: filtersToApply });
     handleFetchCards(filtersToApply);
   };
+
+  const handleSetVisible = () => {
+    if (!visible) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+    setVisible(!visible);
+  };
+
   return visible ? (
     <FiltersComponent
       countCards={total}
       filters={filters}
       onChange={handleChange}
-      onFetchCards={handleFetchCards}
       onReset={handleReset}
       onClose={() => setVisible(false)}
       onSearch={handleSearch}
       isFetching={isFetching}
+      withoutColors={context === CONTEXT.DECK_NEW}
     />
   ) : (
     <FloatButton
       icon={<FilterOutlined />}
       shape="circle"
-      onClick={() => setVisible(!visible)}
+      onClick={handleSetVisible}
     />
   );
-};
-
-Filters.propTypes = {
-  data: PropTypes.shape(),
-  setCards: PropTypes.func,
-  total: PropTypes.number,
-  filters: PropTypes.shape(),
-  defaultFilters: PropTypes.func,
-  setFilters: PropTypes.func,
 };
 
 export default Filters;

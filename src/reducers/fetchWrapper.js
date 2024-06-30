@@ -1,15 +1,17 @@
 export const fetchWrapper = (url, params, actionType) => async (dispatch) => {
   dispatch({ type: `${actionType}_REQUEST` });
   dispatch({ type: `${actionType}_START_LOADING` });
+  let data = null
   try {
     const response = await fetch(url, params);
-    const data = await response.json();
+    data = await response.json();
     dispatch({ type: `${actionType}_SUCCESS`, payload: data });
   } catch (error) {
     dispatch({ type: `${actionType}_FAILURE`, payload: error.toString() });
     setTimeout(() => dispatch({ type: `${actionType}_STOP_LOADING` }), 280);
   }
   setTimeout(() => dispatch({ type: `${actionType}_STOP_LOADING` }), 280);
+  return data
 };
 
 export const loadingSelector = (selectors) => (state) => {

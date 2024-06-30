@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import * as XLSX from "xlsx";
-import { SHEETNAMES } from "../../utils/data";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { hexaColorsInk } from "../../utils/colors";
 import { Button, Row } from "antd";
 import { Link } from "react-router-dom";
+import * as XLSX from "xlsx";
+
+import { SHEETNAMES } from "../../utils/data";
+import { hexaColorsInk } from "../../utils/colors";
 import { importCards } from "../stock/store/actions";
-import { useDispatch, useSelector } from "react-redux";
 import { loadingSelector } from "../../reducers/fetchWrapper";
 import { IMPORT_CARDS } from "../stock/store/constants";
 import Loader from "../../shared/Loader";
+import { HOME } from "../../routes/routes";
 
 const Input = styled.input`
   width: 50%;
@@ -24,10 +26,10 @@ const selector = (state) => ({
 });
 
 const Import = () => {
-  const [successful, setSuccessful] = useState(false);
-  const [chaptersState, setChapters] = useState(null);
   const dispatch = useDispatch();
   const { loading } = useSelector(selector);
+  const [successful, setSuccessful] = useState(false);
+  const [chaptersState, setChapters] = useState(null);
 
   const getDataChapter = async (workbook, sheetname) => {
     const worksheet = workbook.Sheets[sheetname];
@@ -116,7 +118,7 @@ const Import = () => {
             Envoyer le ficher et importer les données
           </Button>
         )}
-        <Link to="/">
+        <Link to={HOME}>
           <Button
             style={{
               marginTop: "30px",
